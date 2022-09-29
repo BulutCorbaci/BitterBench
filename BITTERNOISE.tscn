@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://CAFEFONT.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://BITTERNOISE.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+period = 17.0
+persistence = 0.8
+lacunarity = 2.5
+
+[sub_resource type="NoiseTexture" id=3]
+width = 1612
+height = 725
+noise = SubResource( 2 )
+
+[node name="BITTERNOISE" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="BACKGROUND" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+
+[node name="PROGRAMLABEL" type="Label" parent="."]
+margin_left = 40.0
+margin_right = 1129.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 1 )
+text = "BITTER NOISE GENERATION BENCHMARK"
+
+[node name="STRPOINTS" type="Label" parent="."]
+margin_left = 81.0
+margin_top = 165.0
+margin_right = 362.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 1 )
+text = "NOISES POINTS: 1024
+SECONDS LEFT: 10s"
+
+[node name="TIMERTEST30S" type="Timer" parent="."]
+process_mode = 0
+wait_time = 30.0
+one_shot = true
+
+[node name="TIMERSLEEP5S" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="NOISE" type="TextureRect" parent="."]
+margin_left = 130.0
+margin_top = 288.0
+margin_right = 1742.0
+margin_bottom = 1013.0
+texture = SubResource( 3 )
+expand = true
+
+[connection signal="timeout" from="TIMERTEST30S" to="." method="_on_TIMERTEST30S_timeout"]
+[connection signal="timeout" from="TIMERSLEEP5S" to="." method="_on_TIMERSLEEP5S_timeout"]

@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://PINGBALL3D.gd" type="Script" id=1]
+[ext_resource path="res://BITTER3DOBJ.gd" type="Script" id=2]
+[ext_resource path="res://CAFEFONT.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 8.50905, 1, 3.68176 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1, 5.04705, 3.25778 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 0.2
+height = 0.4
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.233825, 0.228925, 3.06832 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 64
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="BITTER3DOBJ" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="BACKGROUND" type="Spatial" parent="."]
+
+[node name="CSGCOMB" type="CSGCombiner" parent="BACKGROUND"]
+
+[node name="CSG0" type="CSGBox" parent="BACKGROUND/CSGCOMB"]
+width = 16.3215
+height = 9.88568
+depth = 0.503959
+material = SubResource( 1 )
+
+[node name="CAMERA" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
+
+[node name="TOPAREA" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92033, 0 )
+
+[node name="COLLISION" type="CollisionShape" parent="TOPAREA"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.73885, 0 )
+shape = SubResource( 2 )
+
+[node name="BOTTOMAREA" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.98958, 0 )
+
+[node name="COLLISION" type="CollisionShape" parent="BOTTOMAREA"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.73885, 0 )
+shape = SubResource( 2 )
+
+[node name="LEFTAREA" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39038, 0, 0 )
+
+[node name="COLLISION" type="CollisionShape" parent="LEFTAREA"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.95111, 0.0351555, -0.0108452 )
+shape = SubResource( 3 )
+
+[node name="RIGHTAREA" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45317, 0, 0 )
+
+[node name="COLLISION" type="CollisionShape" parent="RIGHTAREA"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.49887, 0.0351555, -0.0108452 )
+shape = SubResource( 3 )
+
+[node name="BALL" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.16868 )
+script = ExtResource( 1 )
+
+[node name="MESH" type="MeshInstance" parent="BALL"]
+mesh = SubResource( 5 )
+
+[node name="AREACOLL" type="Area" parent="BALL"]
+
+[node name="COLLISION" type="CollisionShape" parent="BALL/AREACOLL"]
+shape = SubResource( 6 )
+
+[node name="RPCTIMER" type="Timer" parent="BALL"]
+wait_time = 2.0
+one_shot = true
+
+[node name="PROGRAMLABEL" type="Label" parent="."]
+process_priority = 1
+margin_left = 40.0
+margin_right = 1129.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 7 )
+text = "BITTER 3D OBJECT MULT BENCHMARK"
+
+[node name="TIMERSLEEP5S" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="TIMERTEST60S" type="Timer" parent="."]
+process_mode = 0
+wait_time = 30.0
+one_shot = true
+
+[node name="2DOBJPOINTS" type="Label" parent="."]
+process_priority = 1
+margin_left = 1126.0
+margin_top = 14.0
+margin_right = 1615.0
+margin_bottom = 127.0
+custom_fonts/font = ExtResource( 3 )
+text = "PARTICLE POINTS: 1024
+SECONDS LEFT: 10s"
+
+[connection signal="area_entered" from="BALL/AREACOLL" to="BALL" method="_on_AREACOLL_area_entered"]
+[connection signal="timeout" from="BALL/RPCTIMER" to="BALL" method="_on_RPCTIMER_timeout"]
+[connection signal="timeout" from="TIMERSLEEP5S" to="." method="_on_TIMERSLEEP5S_timeout"]
+[connection signal="timeout" from="TIMERTEST60S" to="." method="_on_TIMERTEST60S_timeout"]

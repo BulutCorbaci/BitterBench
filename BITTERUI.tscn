@@ -1,0 +1,208 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://CAFEFONT.tres" type="DynamicFont" id=1]
+[ext_resource path="res://1080pheavy.ogv" type="VideoStream" id=2]
+[ext_resource path="res://TESTXVIDEOLOOPER.gd" type="Script" id=3]
+[ext_resource path="res://TEST0BTNUI.gd" type="Script" id=4]
+[ext_resource path="res://TEST4VALUEUI.gd" type="Script" id=5]
+[ext_resource path="res://TEST2LBTUI.gd" type="Script" id=6]
+[ext_resource path="res://TEST5VALUEUI.gd" type="Script" id=7]
+[ext_resource path="res://TEST6VALUEUI.gd" type="Script" id=8]
+[ext_resource path="res://TEST7LBLUI.gd" type="Script" id=9]
+[ext_resource path="res://TEST8LEDUI.gd" type="Script" id=10]
+[ext_resource path="res://TEST9MLE.gd" type="Script" id=11]
+[ext_resource path="res://COLORTEST0RNG.gd" type="Script" id=12]
+[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://BITTERUI.gd" type="Script" id=15]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 13 )
+
+[node name="BITTERUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 15 )
+
+[node name="BACKGROUND" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+
+[node name="TESTUI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TEST0" type="Button" parent="TESTUI"]
+margin_left = 61.0
+margin_top = 505.0
+margin_right = 269.0
+margin_bottom = 566.0
+custom_fonts/font = ExtResource( 1 )
+text = "Kablooey"
+script = ExtResource( 4 )
+
+[node name="TEST1" type="Button" parent="TESTUI"]
+margin_left = 63.0
+margin_top = 577.0
+margin_right = 271.0
+margin_bottom = 638.0
+custom_fonts/font = ExtResource( 1 )
+text = "What"
+script = ExtResource( 4 )
+
+[node name="TEST2" type="LinkButton" parent="TESTUI"]
+margin_left = 54.0
+margin_top = 646.0
+margin_right = 289.0
+margin_bottom = 701.0
+custom_fonts/font = ExtResource( 1 )
+text = "Sussy Baka"
+script = ExtResource( 6 )
+
+[node name="TEST3" type="LinkButton" parent="TESTUI"]
+margin_left = 63.0
+margin_top = 709.0
+margin_right = 298.0
+margin_bottom = 764.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Bruh Bro"
+script = ExtResource( 6 )
+
+[node name="TEST4" type="HSlider" parent="TESTUI"]
+margin_left = 74.0
+margin_top = 778.0
+margin_right = 305.0
+margin_bottom = 802.0
+script = ExtResource( 5 )
+
+[node name="TEST5" type="ProgressBar" parent="TESTUI"]
+margin_left = 69.0
+margin_top = 821.0
+margin_right = 314.0
+margin_bottom = 835.0
+value = 69.0
+script = ExtResource( 7 )
+
+[node name="TEST6" type="SpinBox" parent="TESTUI"]
+margin_left = 384.0
+margin_top = 775.0
+margin_right = 458.0
+margin_bottom = 799.0
+script = ExtResource( 8 )
+
+[node name="TEST7" type="Label" parent="TESTUI"]
+margin_left = 60.0
+margin_top = 844.0
+margin_right = 484.0
+margin_bottom = 899.0
+custom_fonts/font = ExtResource( 1 )
+text = "Text Labels My Love"
+script = ExtResource( 9 )
+
+[node name="TEST8" type="LineEdit" parent="TESTUI"]
+margin_left = 56.0
+margin_top = 918.0
+margin_right = 440.0
+margin_bottom = 983.0
+custom_fonts/font = ExtResource( 1 )
+text = "I found amongus"
+caret_blink = true
+script = ExtResource( 10 )
+
+[node name="TEST9" type="TextEdit" parent="TESTUI"]
+margin_left = 53.0
+margin_top = 995.0
+margin_right = 541.0
+margin_bottom = 1059.0
+custom_fonts/font = ExtResource( 1 )
+text = "I didnt find amongus :("
+script = ExtResource( 11 )
+
+[node name="TESTX" type="VideoPlayer" parent="TESTUI"]
+margin_left = 1035.0
+margin_top = 194.0
+margin_right = 1509.0
+margin_bottom = 470.0
+rect_scale = Vector2( 0.855288, 1.08591 )
+stream = ExtResource( 2 )
+autoplay = true
+buffering_msec = 1000
+script = ExtResource( 3 )
+
+[node name="LABEL" type="Label" parent="TESTUI/TESTX"]
+margin_left = 161.349
+margin_top = -65.3828
+margin_right = 290.349
+margin_bottom = -10.3828
+custom_fonts/font = ExtResource( 1 )
+text = "1080P"
+
+[node name="TESTX2" type="VideoPlayer" parent="TESTUI"]
+visible = false
+margin_left = 1482.0
+margin_top = 194.0
+margin_right = 1956.0
+margin_bottom = 470.0
+rect_scale = Vector2( 0.855288, 1.08591 )
+autoplay = true
+buffering_msec = 1000
+script = ExtResource( 3 )
+
+[node name="LABEL" type="Label" parent="TESTUI/TESTX2"]
+margin_left = 218.64
+margin_top = -67.2246
+margin_right = 347.64
+margin_bottom = -12.2246
+custom_fonts/font = ExtResource( 1 )
+text = "4K"
+
+[node name="COLORTEST0" type="ColorRect" parent="."]
+margin_left = 64.0
+margin_top = 208.0
+margin_right = 529.0
+margin_bottom = 482.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 12 )
+
+[node name="COLORTEST1" type="ColorRect" parent="."]
+margin_left = 545.0
+margin_top = 206.0
+margin_right = 1010.0
+margin_bottom = 480.0
+color = Color( 0.678431, 0.678431, 0.678431, 1 )
+script = ExtResource( 12 )
+
+[node name="PROGRAMLABEL" type="Label" parent="."]
+margin_left = 40.0
+margin_right = 1129.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 1 )
+text = "BITTER UI & DECODING BENCHMARK"
+
+[node name="TIMERSLEEP5S" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="TIMERTEST30S" type="Timer" parent="."]
+process_mode = 0
+wait_time = 30.0
+one_shot = true
+
+[node name="UIDECODEPOINTS" type="Label" parent="."]
+margin_left = 348.0
+margin_top = 84.0
+margin_right = 750.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 1 )
+text = "HASH POINTS: 1024
+SECONDS LEFT: 10s"
+
+[connection signal="timeout" from="TIMERSLEEP5S" to="." method="_on_TIMERSLEEP5S_timeout"]
+[connection signal="timeout" from="TIMERTEST30S" to="." method="_on_TIMERTEST30S_timeout"]
